@@ -24,6 +24,8 @@ def main():
     loc1=pic
     loc2=results[0]
     person=results[1]
-    GUI.resultDisplay(screen, loc1, loc2, person)
+    RV=GUI.resultDisplay(screen, loc1, loc2, person)
+    if RV==1: main()
+    else: return
 
 main()
