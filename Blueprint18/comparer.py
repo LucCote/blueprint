@@ -46,7 +46,7 @@ def getMatch(picloc):
     import face_recognition
 
     # Load a sample picture and learn how to recognize it.
-    bill_image = face_recognition.load_image_file("billnye.jpeg")
+    bill_image = face_recognition.load_image_file("billnye.jpg")
     bill_face_encoding = face_recognition.face_encodings(bill_image)[0]
 
     jane_image = face_recognition.load_image_file("janegoodall.jpeg")
@@ -82,15 +82,15 @@ def getMatch(picloc):
         musk_face_encoding, steve_face_encoding, curie_face_encoding, michio_face_encoding, susan_face_encoding
     ]
 
-    print(known_face_encodings)
 
     unknown_image = face_recognition.load_image_file(picloc)
     unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
     results = face_recognition.face_distance(known_face_encodings, unknown_encoding)
+    print(results)
 
     def getBestIndex(w):
-        rating = 0
-        value = 0
+        rating = w[0]
+        value = w[0]
         for i in range(len(w)):
             if w[i] < rating:
                 rating = w[i]
