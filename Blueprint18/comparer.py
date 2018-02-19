@@ -86,11 +86,10 @@ def getMatch(picloc):
     unknown_image = face_recognition.load_image_file(picloc)
     unknown_encoding = face_recognition.face_encodings(unknown_image)[0]
     results = face_recognition.face_distance(known_face_encodings, unknown_encoding)
-    print(results)
 
     def getBestIndex(w):
         rating = w[0]
-        value = w[0]
+        value = 0
         for i in range(len(w)):
             if w[i] < rating:
                 rating = w[i]

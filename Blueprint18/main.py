@@ -7,6 +7,7 @@ def main():
     size = (WIDTH, HEIGHT)
     #program starts
     pygame.init()
+    pygame.display.set_caption("Famous Faces")
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode(size)
 
@@ -26,6 +27,5 @@ def main():
     person=results[1]
     RV=GUI.resultDisplay(screen, loc1, loc2, person)
     if RV==1: main()
-    else: return
 
 main()

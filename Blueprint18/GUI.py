@@ -9,41 +9,25 @@ WHITE = (255, 255, 255)
 BLACK = (0,0,0)
 
 def startGui(screen, clock):
-    x1=50;y1=50;x2=50;y2=220
+    x1=50;y1=100;x2=50;y2=220
     w1=400;h1=150;w2=400;h2=150
     screen.fill(WHITE)
-    pygame.draw.rect(screen, BLACK, (x1, y1, w1, h1), 5)
-    pygame.draw.rect(screen, BLACK, (x2, y2, w2, h2), 5)
+    pygame.draw.rect(screen, BLACK, (x1, y1, 400, 200), 5)
     font = pygame.font.SysFont('Helvetica', 25, True, False)
-    chooseFile=font.render("Choose a Picture", True, BLACK)
     useCamera=font.render("Take a Picture", True, BLACK)
 
-    chooseFileWidth = chooseFile.get_width()
-    chooseFileHeight = chooseFile.get_height()
     takePictureWidth = useCamera.get_width()
     takePictureHeight = useCamera.get_height()
 
-    screen.blit(chooseFile,[x1+(w1-chooseFileWidth)/2,y1+(h1-chooseFileHeight)/2])
-    screen.blit(useCamera, [x2+(w2-takePictureWidth)/2, y2+(h2-takePictureHeight)/2])
+    screen.blit(useCamera, [x1+(400-takePictureWidth)/2, y1+(200-takePictureHeight)/2])
     pygame.display.flip()
 
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: return 0
             elif event.type == pygame.MOUSEBUTTONDOWN:
-                if pygame.mouse.get_pos()[0] >= x1 and pygame.mouse.get_pos()[1] >= y1:
-                    if pygame.mouse.get_pos()[0] <= x1+w1 and pygame.mouse.get_pos()[1] <= y1+h1:
-                        return 1
-                if pygame.mouse.get_pos()[0] >= x2 and pygame.mouse.get_pos()[1] >= y2:
-                    if pygame.mouse.get_pos()[0] <= x2+w2 and pygame.mouse.get_pos()[1] <= y2+h2:
-                        return 2
+                return 2
         clock.tick(30)
-
-def choosePicture():
-    tkinter.Tk().withdraw()
-    fileName = filedialog.askopenfilename(initialdir="//", title="Select file",
-                                          filetypes=(("jpeg files", "*.jpg"), ("all files", "*.*")))
-    return fileName
 
 def getWebcam(screen,clock,WIDTH,HEIGHT):
     camera = cv2.VideoCapture(0)
@@ -115,4 +99,3 @@ def resultDisplay(screen, loc1, loc2, person):
                 if pygame.mouse.get_pos()[0] >= x3 and pygame.mouse.get_pos()[1] >= y3:
                     if pygame.mouse.get_pos()[0] <= x3+w3 and pygame.mouse.get_pos()[1] <= y3+h3:
                         return 1
-    pygame.quit()
